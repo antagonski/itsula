@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "232925783602",
+    "project_id": "itsula-anadan",
+    "storage_bucket": "itsula-anadan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:232925783602:android:518bb161ec7f3eaca7be2b",
+        "android_client_info": {
+          "package_name": "com.example.itsula"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDixca1YQ_3HxFuNQYX18nntMJwmbi2Ces"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
