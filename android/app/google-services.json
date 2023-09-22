@@ -12,7 +12,20 @@
           "package_name": "com.example.itsula"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "232925783602-pkkgtmk45iuku0j6mb053e659r11movv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.itsula",
+            "certificate_hash": "fe3fd0895f9860a3af67c7148980ee009c3c5928"
+          }
+        },
+        {
+          "client_id": "232925783602-olce8b584tiltnqh4bntclf4pkmm90j3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDixca1YQ_3HxFuNQYX18nntMJwmbi2Ces"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "232925783602-olce8b584tiltnqh4bntclf4pkmm90j3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "232925783602-0g2cb98all23pv8jj9i12mv289thbopa.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.itsula.RunnerTests"
+              }
+            }
+          ]
         }
       }
     }

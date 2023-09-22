@@ -2,6 +2,40 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>fbapi</string>
+			<string>fbapi20130214</string>
+			<string>fbapi20130410</string>
+			<string>fbapi20130702</string>
+			<string>fbapi20131010</string>
+			<string>fbapi20131219</string>    
+			<string>fbapi20140410</string>
+			<string>fbapi20140116</string>
+			<string>fbapi20150313</string>
+			<string>fbapi20150629</string>
+			<string>fbauth</string>
+			<string>fbauth2</string>
+			<string>fb-messenger-api20140430</string>
+		</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb968293020943308</string>
+				<string>com.googleusercontent.apps.232925783602-i6gltorapq44vf6t6rclk07ep3r6fvub</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>968293020943308</string>
+	<key>FacebookClientToken</key>
+	<string>2124d87058d3aef34553dafd62dd5200</string>
+	<key>FacebookDisplayName</key>
+	<string>Itsula</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
