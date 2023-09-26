@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:itsula/firebase_options.dart';
@@ -7,7 +8,9 @@ import 'package:itsula/state/auth/providers/auth_state_provider.dart';
 import 'dart:developer' as devtools show log;
 
 import 'package:itsula/state/auth/providers/is_logged_in_provider.dart';
-import 'package:itsula/views/components/random/dummy_page.dart';
+import 'package:itsula/state/providers/is_loading_provider.dart';
+import 'package:itsula/views/components/loading/loading_screen.dart';
+import 'package:itsula/views/components/login/new_login_view.dart';
 
 extension Log on Object {
   void log() => devtools.log(
@@ -43,56 +46,31 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Consumer(
         builder: (context, ref, child) {
+          ref.listen<bool>(
+            isLoadingProvider,
+            (_, isLoading) {
+              if (isLoading) {
+                LoadingScreen.instance().show(
+                  context: context,
+                );
+              } else {
+                if (kDebugMode) {
+                  print("inside else before hiding loading screen.");
+                }
+                LoadingScreen.instance().hide();
+                if (kDebugMode) {
+                  print("finished hiding, so $isLoading");
+                }
+              }
+            },
+          );
           final isLoggedIn = ref.watch(isLoggedInProvider);
           if (isLoggedIn) {
             return const MainView();
           } else {
-            return const LoginView();
+            return const NewLoginView();
           }
         },
-      ),
-    );
-  }
-}
-
-class LoginView extends ConsumerWidget {
-  const LoginView({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login View'),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Center(
-            child: TextButton(
-              onPressed: ref.read(authStateProvider.notifier).logInWithGoogle,
-              child: const Text("Google"),
-            ),
-          ),
-          Center(
-            child: TextButton(
-              onPressed: ref.read(authStateProvider.notifier).logInWithFacebook,
-              child: const Text("FB"),
-            ),
-          ),
-          Center(
-            child: TextButton(
-              onPressed: () {
-                Navigator.of(context).push<void>(
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) => const DummyPage(),
-                  ),
-                );
-              },
-              child: const Text("DUMMY PAGE"),
-            ),
-          ),
-        ],
       ),
     );
   }

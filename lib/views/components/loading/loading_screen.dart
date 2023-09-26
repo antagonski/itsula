@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:itsula/views/components/constants/strings.dart';
+import 'package:itsula/views/constants/strings.dart';
 import 'package:itsula/views/components/loading/loading_screen_controller.dart';
 
 class LoadingScreen {
@@ -32,9 +32,6 @@ class LoadingScreen {
     required String text,
   }) {
     final state = Overlay.of(context);
-    if (state == null) {
-      return null;
-    }
     final textController = StreamController<String>();
     textController.add(text);
 
@@ -99,6 +96,7 @@ class LoadingScreen {
     state.insert(overlay);
     return LoadingScreenController(close: () {
       textController.close();
+      overlay.remove();
       return true;
     }, update: (text) {
       textController.add(text);
