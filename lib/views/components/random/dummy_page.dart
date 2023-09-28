@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:itsula/views/components/animations/empty_box_animation_view.dart';
-import 'package:itsula/views/components/animations/fof_animation_view.dart';
 
 class DummyPage extends StatelessWidget {
   const DummyPage({super.key});

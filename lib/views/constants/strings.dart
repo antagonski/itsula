@@ -67,5 +67,6 @@ class Strings {
   static const passwordHint = "Password";
   static const orLogInWith = "Or log in with";
 
+  static const anErrorHasOccurred = 'An error has occurred..';
   const Strings._();
 }
