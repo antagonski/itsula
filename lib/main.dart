@@ -9,6 +9,7 @@ import 'dart:developer' as devtools show log;
 
 import 'package:itsula/state/auth/providers/is_logged_in_provider.dart';
 import 'package:itsula/state/providers/is_loading_provider.dart';
+import 'package:itsula/views/blog/blog_view.dart';
 import 'package:itsula/views/components/loading/loading_screen.dart';
 import 'package:itsula/views/components/login/new_login_view.dart';
 
@@ -66,7 +67,7 @@ class MyApp extends StatelessWidget {
           );
           final isLoggedIn = ref.watch(isLoggedInProvider);
           if (isLoggedIn) {
-            return const MainView();
+            return const BlogView();
           } else {
             return const NewLoginView();
           }

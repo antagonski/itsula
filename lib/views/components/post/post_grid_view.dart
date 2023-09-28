@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:itsula/state/posts/models/post.dart';
 import 'package:itsula/views/components/post/post_thumbnail_view.dart';
+import 'package:itsula/views/create_new_post/create_new_post_view.dart';
+import 'package:itsula/views/post_comments/post_comments_view.dart';
 
 class PostGridView extends StatelessWidget {
   final Iterable<Post> posts;
@@ -21,7 +23,16 @@ class PostGridView extends StatelessWidget {
         return PostThumbnailView(
             post: post,
             onTap: () {
-              //TODO navigate to post view with details
+              //TODO add page for blog post view
+              /*Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return PostCommentsView(
+                      postId: post.postId,
+                    );
+                  },
+                ),
+              );*/
             });
       },
     );

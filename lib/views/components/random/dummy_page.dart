@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:itsula/views/components/animations/my_animation_01_animation_view.dart';
+import 'package:itsula/views/components/animations/empty_box_animation_view.dart';
+import 'package:itsula/views/components/animations/fof_animation_view.dart';
 
 class DummyPage extends StatelessWidget {
   const DummyPage({super.key});
@@ -7,8 +8,10 @@ class DummyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: MyAnimation01AnimationView(),
+      body: SafeArea(
+        child: Center(
+          child: EmptyBoxAnimationView(),
+        ),
       ),
     );
   }

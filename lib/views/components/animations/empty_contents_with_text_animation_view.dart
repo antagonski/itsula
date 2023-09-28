@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:itsula/views/components/animations/my_animation_01_animation_view.dart';
+import 'package:itsula/views/components/animations/empty_box_animation_view.dart';
 
 class EmptyContentsWithTextAnimationView extends StatelessWidget {
   final String text;
@@ -23,7 +23,10 @@ class EmptyContentsWithTextAnimationView extends StatelessWidget {
                   ?.copyWith(color: Colors.white54),
             ),
           ),
-          const MyAnimation01AnimationView(),
+          const EmptyBoxAnimationView(),
+          const SizedBox(
+            height: 400.0,
+          ),
         ],
       ),
     );

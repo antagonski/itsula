@@ -1,5 +1,8 @@
 enum LottieAnimation {
-  myAnimation01(name: 'my_animation_01');
+  jumpingSlime(name: 'jumping_slime'),
+  fof(name: 'fof'),
+  documents(name: 'documents'),
+  emptyBox(name: 'empty_box');
 
   final String name;
   const LottieAnimation({
