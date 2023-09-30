@@ -18,7 +18,7 @@ class UserInfoStorage {
       //checking if user exists in collection
       final userInfo = await FirebaseFirestore.instance
           .collection(
-            FirebaseCollectiondName.users,
+            FirebaseCollectionName.users,
           )
           .where(
             FirebaseFieldName.userId,
@@ -44,14 +44,14 @@ class UserInfoStorage {
 
       await FirebaseFirestore.instance
           .collection(
-            FirebaseCollectiondName.users,
+            FirebaseCollectionName.users,
           )
           .add(
             payload,
           );
       return true;
     } catch (e) {
-      kDebugMode ? print("UserInfoStorage error: ${e.toString()}") : null;
+      if (kDebugMode) print("UserInfoStorage error: ${e.toString()}");
       return false;
     }
   }

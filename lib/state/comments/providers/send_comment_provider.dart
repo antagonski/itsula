@@ -3,6 +3,6 @@ import 'package:itsula/state/comments/notifiers/send_comment_notifier.dart';
 import 'package:itsula/state/image_upload/typedefs/is_loading.dart';
 
 final sendCommentProvider =
-    StateNotifierProvider<SendCommentNotifier, isLoading>(
+    StateNotifierProvider<SendCommentNotifier, IsLoading>(
   (_) => SendCommentNotifier(),
 );

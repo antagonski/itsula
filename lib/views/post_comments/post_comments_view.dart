@@ -6,7 +6,7 @@ import 'package:itsula/state/comments/models/request_for_post_and_comments.dart'
 import 'package:itsula/state/comments/providers/post_comments_provider.dart';
 import 'package:itsula/state/comments/providers/send_comment_provider.dart';
 import 'package:itsula/state/posts/typedefs/post_id.dart';
-import 'package:itsula/views/comment/comment_tile.dart';
+import 'package:itsula/views/components/comment/comment_tile.dart';
 import 'package:itsula/views/components/animations/empty_contents_with_text_animation_view.dart';
 import 'package:itsula/views/components/animations/fof_animation_view.dart';
 import 'package:itsula/views/components/animations/jumping_slime_animation_view.dart';

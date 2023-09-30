@@ -18,7 +18,7 @@ import 'package:itsula/state/posts/typedefs/user_id.dart';
 import 'package:uuid/uuid.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 
-class ImageUploadNotifier extends StateNotifier<isLoading> {
+class ImageUploadNotifier extends StateNotifier<IsLoading> {
   ImageUploadNotifier() : super(false);
 
   set isLoading(bool value) => state = value;
@@ -79,7 +79,7 @@ class ImageUploadNotifier extends StateNotifier<isLoading> {
     final thumbnailRef = FirebaseStorage.instance
         .ref()
         .child(userId)
-        .child(FirebaseCollectiondName.thumbnails)
+        .child(FirebaseCollectionName.thumbnails)
         .child(fileName);
 
     final originalFileRef = FirebaseStorage.instance
@@ -112,7 +112,7 @@ class ImageUploadNotifier extends StateNotifier<isLoading> {
       );
 
       await FirebaseFirestore.instance
-          .collection(FirebaseCollectiondName.posts)
+          .collection(FirebaseCollectionName.posts)
           .add(postPayload);
       return true;
     } catch (_) {

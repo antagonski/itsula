@@ -14,7 +14,7 @@ final postCommentsProvider = StreamProvider.family
   final controller = StreamController<Iterable<Comment>>();
 
   final sub = FirebaseFirestore.instance
-      .collection(FirebaseCollectiondName.comments)
+      .collection(FirebaseCollectionName.comments)
       .where(
         FirebaseFieldName.postId,
         isEqualTo: request.postId,

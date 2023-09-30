@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:itsula/views/constants/strings.dart';
 import 'package:itsula/views/components/rich_text/base_text.dart';
@@ -20,7 +21,9 @@ class LoginViewRegisterLinks extends StatelessWidget {
         BaseText.link(
           text: Strings.registerNow,
           onTap: () {
-            print("Go to register page.");
+            if (kDebugMode) {
+              print("Go to register page.");
+            }
           },
         ),
       ],

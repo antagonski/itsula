@@ -4,7 +4,7 @@ import 'package:itsula/state/comments/typedefs/comment_id.dart';
 import 'package:itsula/state/constants/firebase_collection_name.dart';
 import 'package:itsula/state/image_upload/typedefs/is_loading.dart';
 
-class DeleteCommentStateNotifier extends StateNotifier<isLoading> {
+class DeleteCommentStateNotifier extends StateNotifier<IsLoading> {
   DeleteCommentStateNotifier() : super(false);
 
   set isLoading(bool value) => state = value;
@@ -15,7 +15,7 @@ class DeleteCommentStateNotifier extends StateNotifier<isLoading> {
     try {
       isLoading = true;
       final query = FirebaseFirestore.instance
-          .collection(FirebaseCollectiondName.comments)
+          .collection(FirebaseCollectionName.comments)
           .where(FieldPath.documentId, isEqualTo: commentId)
           .limit(1)
           .get();

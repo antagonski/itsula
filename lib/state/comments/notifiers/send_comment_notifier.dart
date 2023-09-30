@@ -6,7 +6,7 @@ import 'package:itsula/state/image_upload/typedefs/is_loading.dart';
 import 'package:itsula/state/posts/typedefs/post_id.dart';
 import 'package:itsula/state/posts/typedefs/user_id.dart';
 
-class SendCommentNotifier extends StateNotifier<isLoading> {
+class SendCommentNotifier extends StateNotifier<IsLoading> {
   SendCommentNotifier() : super(false);
 
   set isLoading(bool value) => state = value;
@@ -22,7 +22,7 @@ class SendCommentNotifier extends StateNotifier<isLoading> {
         comment: comment,
       );
       await FirebaseFirestore.instance
-          .collection(FirebaseCollectiondName.comments)
+          .collection(FirebaseCollectionName.comments)
           .add(payload);
 
       return true;

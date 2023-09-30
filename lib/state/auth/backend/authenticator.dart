@@ -31,16 +31,16 @@ class Authenticator {
     final oauthCredential = FacebookAuthProvider.credential(token);
 
     try {
-      print("we are in try beofre fa auth");
+      //print("we are in try beofre fa auth");
       await FirebaseAuth.instance.signInWithCredential(
         oauthCredential,
       );
-      print("we finished fa auth");
+      //print("we finished fa auth");
       return AuthResult.success;
     } on FirebaseAuthException catch (e) {
       final email = e.email;
       final credential = e.credential;
-      print("This is ok, but");
+      //print("This is ok, but");
       if (e.code == Constants.accountExistsWithDifferentCredential &&
           email != null &&
           credential != null) {

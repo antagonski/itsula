@@ -19,7 +19,7 @@ final userPostsProvider = StreamProvider.autoDispose<Iterable<Post>>(
 
     final sub = FirebaseFirestore.instance
         .collection(
-          FirebaseCollectiondName.posts,
+          FirebaseCollectionName.posts,
         )
         .orderBy(
           FirebaseFieldName.createdAt,
