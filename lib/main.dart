@@ -12,6 +12,7 @@ import 'package:itsula/state/providers/is_loading_provider.dart';
 import 'package:itsula/views/blog/blog_view.dart';
 import 'package:itsula/views/components/loading/loading_screen.dart';
 import 'package:itsula/views/components/login/new_login_view.dart';
+import 'package:itsula/views/homepage/homepage_view.dart';
 
 extension Log on Object {
   void log() => devtools.log(
@@ -69,7 +70,8 @@ class MyApp extends StatelessWidget {
           if (isLoggedIn) {
             return const BlogView();
           } else {
-            return const NewLoginView();
+            return const HomePageView();
+            //return const NewLoginView();
           }
         },
       ),

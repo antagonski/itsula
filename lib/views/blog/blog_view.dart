@@ -9,6 +9,7 @@ import 'package:itsula/views/components/dialogs/alert_dialog_model.dart';
 import 'package:itsula/views/components/dialogs/logout_dialog.dart';
 import 'package:itsula/views/constants/strings.dart';
 import 'package:itsula/views/create_new_post/create_new_post_view.dart';
+import 'package:itsula/views/tabs/all_posts/all_posts_view.dart';
 import 'package:itsula/views/tabs/search/search_view.dart';
 import 'package:itsula/views/tabs/user_posts/user_posts_view.dart';
 
@@ -110,7 +111,7 @@ class _BlogViewState extends ConsumerState<BlogView> {
           children: [
             UserPostsView(),
             SearchView(),
-            UserPostsView(),
+            AllPostsView(),
           ],
         ),
       ),
