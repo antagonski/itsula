@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:itsula/views/constants/app_colors.dart';
 import 'package:itsula/views/constants/strings.dart';
 
 class DividerWithMarginsAndText extends StatelessWidget {
@@ -16,22 +17,31 @@ class DividerWithMarginsAndText extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: Divider(color: Colors.grey.shade600),
+                child: Divider(
+                  color: AppColors.textColor.withAlpha(
+                    100,
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Text(
                   Strings.orLogInWith,
                   style: TextStyle(
-                      color: Colors.grey.shade400,
+                      color: AppColors.textColor.withAlpha(
+                        100,
+                      ),
                       fontSize: 16,
                       fontWeight: FontWeight.bold),
                 ),
               ),
               Expanded(
-                  child: Divider(
-                color: Colors.grey.shade600,
-              )),
+                child: Divider(
+                  color: AppColors.textColor.withAlpha(
+                    100,
+                  ),
+                ),
+              ),
             ],
           ),
         ),

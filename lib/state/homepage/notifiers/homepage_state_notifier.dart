@@ -11,6 +11,10 @@ class HomePageStateNotifier extends StateNotifier<HomePageState> {
 
   int geCurrentIndex() => state.index;
 
+  void reset() {
+    state = const HomePageState.initial();
+  }
+
   void onIndexChange(
     int index,
   ) {

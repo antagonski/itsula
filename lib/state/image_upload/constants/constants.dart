@@ -8,5 +8,9 @@ class Constants {
   //for videos
   static const videoThumbnailMaxHeight = 400;
   static const videoThumbnailQuality = 75;
+
+  static const defaultImageRelativePath =
+      "/Users/leoantagonski/Documents/Flutter/itsula/assets/images/duality_logo_01.png";
+
   const Constants._();
 }

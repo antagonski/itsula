@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:itsula/state/constants/homepage_side_bar_app_name.dart';
+import 'package:itsula/views/constants/app_colors.dart';
 
 class SideMenutile extends StatelessWidget {
   const SideMenutile({
@@ -15,9 +18,10 @@ class SideMenutile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Padding(
-          padding: EdgeInsets.only(left: 24, right: 10),
+        Padding(
+          padding: const EdgeInsets.only(left: 24, right: 10),
           child: Divider(
+            color: AppColors.accentColor,
             height: 1,
           ),
         ),
@@ -32,7 +36,7 @@ class SideMenutile extends StatelessWidget {
               left: 0,
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.green.shade700,
+                  color: AppColors.accentColor,
                   borderRadius: const BorderRadius.all(
                     Radius.circular(10),
                   ),
@@ -41,15 +45,10 @@ class SideMenutile extends StatelessWidget {
             ),
             ListTile(
               onTap: press,
-              leading: const SizedBox(
+              leading: SizedBox(
                 height: 34,
                 width: 34,
-                child: Center(
-                  child: Icon(
-                    Icons.back_hand,
-                    size: 30,
-                  ),
-                ),
+                child: _iconDelegate(),
               ),
               title: Text(
                 title,
@@ -61,5 +60,26 @@ class SideMenutile extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  FaIcon _iconDelegate() {
+    switch (title) {
+      case HomePageSideBarAppName.blogary:
+        return const FaIcon(
+          FontAwesomeIcons.pencil,
+        );
+      case HomePageSideBarAppName.habtrack:
+        return const FaIcon(
+          FontAwesomeIcons.calendar,
+        );
+      case HomePageSideBarAppName.letters:
+        return const FaIcon(
+          FontAwesomeIcons.paperPlane,
+        );
+      default:
+        return const FaIcon(
+          FontAwesomeIcons.x,
+        );
+    }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart' show immutable, VoidCallback;
 import 'package:flutter/material.dart' show TextStyle, Colors, TextDecoration;
 import 'package:itsula/views/components/rich_text/link_text.dart';
+import 'package:itsula/views/constants/app_colors.dart';
 
 @immutable
 class BaseText {
@@ -31,6 +32,8 @@ class BaseText {
       LinkText(
         text: text,
         onTap: onTap,
-        style: style,
+        style: style == null
+            ? style
+            : style.copyWith(color: AppColors.accentColor),
       );
 }

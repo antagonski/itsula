@@ -12,8 +12,8 @@ class LoginButton extends StatelessWidget {
       child: TextButton(
         onPressed: () {},
         style: TextButton.styleFrom(
-          backgroundColor: AppColors.loginButtonColor,
-          foregroundColor: AppColors.loginButtonTextColor,
+          backgroundColor: AppColors.primaryColor,
+          foregroundColor: AppColors.textColor,
         ),
 
         /*padding: const EdgeInsets.all(25.0),
@@ -22,7 +22,7 @@ class LoginButton extends StatelessWidget {
           color: AppColors.loginButtonColor,
           borderRadius: BorderRadius.circular(8.0),
         ),*/
-        child: const SizedBox(
+        child: SizedBox(
           height: 50.0,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -30,7 +30,7 @@ class LoginButton extends StatelessWidget {
               Text(
                 Strings.login,
                 style: TextStyle(
-                    color: AppColors.loginButtonTextColor,
+                    color: AppColors.textColor,
                     fontSize: 16,
                     fontWeight: FontWeight.bold),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:itsula/views/components/animations/empty_box_animation_view.dart';
+import 'package:itsula/views/constants/app_colors.dart';
 
 class EmptyContentsWithTextAnimationView extends StatelessWidget {
   final String text;
@@ -17,10 +18,11 @@ class EmptyContentsWithTextAnimationView extends StatelessWidget {
             padding: const EdgeInsets.all(32.0),
             child: Text(
               text,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge
-                  ?.copyWith(color: Colors.white54),
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    color: AppColors.textColor.withAlpha(
+                      150,
+                    ),
+                  ),
             ),
           ),
           const EmptyBoxAnimationView(),

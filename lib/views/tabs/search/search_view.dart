@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:itsula/views/components/search_grid_view.dart';
+import 'package:itsula/views/constants/app_colors.dart';
 import 'package:itsula/views/constants/strings.dart';
 import 'package:itsula/views/extensions/dismiss_keyboard.dart';
 
@@ -32,10 +33,21 @@ class SearchView extends HookConsumerWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
+              cursorColor: AppColors.accentColor,
               controller: controller,
               textInputAction: TextInputAction.search,
               decoration: InputDecoration(
+                floatingLabelStyle: TextStyle(
+                  color: AppColors.textColor.withAlpha(
+                    100,
+                  ),
+                ),
                 labelText: Strings.enterYourSearchTermHere,
+                labelStyle: TextStyle(
+                  color: AppColors.textColor.withAlpha(
+                    100,
+                  ),
+                ),
                 suffixIcon: IconButton(
                   onPressed: () {
                     controller.clear();

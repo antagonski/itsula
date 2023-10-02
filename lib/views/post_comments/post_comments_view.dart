@@ -10,6 +10,7 @@ import 'package:itsula/views/components/comment/comment_tile.dart';
 import 'package:itsula/views/components/animations/empty_contents_with_text_animation_view.dart';
 import 'package:itsula/views/components/animations/fof_animation_view.dart';
 import 'package:itsula/views/components/animations/jumping_slime_animation_view.dart';
+import 'package:itsula/views/constants/app_colors.dart';
 import 'package:itsula/views/constants/strings.dart';
 import 'package:itsula/views/extensions/dismiss_keyboard.dart';
 
@@ -44,10 +45,14 @@ class PostCommentsView extends HookConsumerWidget {
     );
 
     return Scaffold(
+      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
+        backgroundColor: AppColors.secondaryColor,
+        centerTitle: true,
         title: const Text(Strings.comments),
         actions: [
           IconButton(
+            color: AppColors.textColor,
             onPressed: hasText.value
                 ? () {
                     _submitCommentWithController(
@@ -107,7 +112,7 @@ class PostCommentsView extends HookConsumerWidget {
                     },
                   ),
                 );
-              }, error: (error, StackTrace) {
+              }, error: (error, stackTrace) {
                 return const FoFAnimationView();
               }, loading: () {
                 return const JumpingSlimeAnimationView();
@@ -130,9 +135,27 @@ class PostCommentsView extends HookConsumerWidget {
                         );
                       }
                     },
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: Strings.writeYourCommentHere,
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 26, horizontal: 12),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: AppColors.textColor.withAlpha(
+                            100,
+                          ),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.textColor),
+                      ),
+                      fillColor: AppColors.secondaryColor,
+                      filled: true,
+                      hintText: Strings.writeYourCommentHere,
+                      hintStyle: TextStyle(
+                        color: AppColors.textColor.withAlpha(
+                          100,
+                        ),
+                      ),
                     ),
                   ),
                 ),

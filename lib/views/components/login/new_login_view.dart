@@ -8,10 +8,10 @@ import 'package:itsula/views/components/login/login_button.dart';
 import 'package:itsula/views/components/login/login_username_textfield.dart';
 import 'package:itsula/views/components/login/login_password_textfield.dart';
 import 'package:itsula/views/components/login/login_view_register_links.dart';
-import 'package:itsula/views/components/random/dummy_page.dart';
 import 'package:itsula/views/constants/app_colors.dart';
 import 'package:itsula/views/constants/strings.dart';
 
+//
 class NewLoginView extends ConsumerWidget {
   const NewLoginView({super.key});
 
@@ -19,6 +19,7 @@ class NewLoginView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Center(
@@ -71,11 +72,10 @@ class NewLoginView extends ConsumerWidget {
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.all(16.0),
                         shape: RoundedRectangleBorder(
-                            side: const BorderSide(
-                                color: Colors.white, width: 2.0),
+                            side: BorderSide(
+                                color: AppColors.textColor, width: 2.0),
                             borderRadius: BorderRadius.circular(16)),
-                        backgroundColor: AppColors.loginButtonColor,
-                        foregroundColor: AppColors.loginButtonTextColor,
+                        backgroundColor: AppColors.secondaryColor,
                       ),
                       onPressed:
                           ref.read(authStateProvider.notifier).logInWithGoogle,
@@ -83,25 +83,6 @@ class NewLoginView extends ConsumerWidget {
                     ),
                     const SizedBox(
                       width: 8,
-                    ),
-                    TextButton(
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.all(16.0),
-                        shape: RoundedRectangleBorder(
-                            side: const BorderSide(
-                                color: Colors.white, width: 2.0),
-                            borderRadius: BorderRadius.circular(16)),
-                        backgroundColor: AppColors.loginButtonColor,
-                        foregroundColor: AppColors.loginButtonTextColor,
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const DummyPage(),
-                          ),
-                        );
-                      },
-                      child: const Icon(Icons.accessibility),
                     ),
                   ],
                 ),

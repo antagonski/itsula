@@ -9,5 +9,11 @@ class AppColors {
   static final googleColor = '#4285f4'.htmlColorToColor();
   static final facebookColor = '#3b5998'.htmlColorToColor();
 
+  static final textColor = '#f2eeee'.htmlColorToColor();
+  static final backgroundColor = '#27211f'.htmlColorToColor();
+  static final primaryColor = '#7a0b06'.htmlColorToColor();
+  static final secondaryColor = '#1d2126'.htmlColorToColor();
+  static final accentColor = '#769888'.htmlColorToColor();
+
   const AppColors._();
 }

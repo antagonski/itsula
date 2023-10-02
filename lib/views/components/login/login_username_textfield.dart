@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:itsula/views/constants/app_colors.dart';
 
 class LoginUsernameTextfield extends StatelessWidget {
   final String hintText;
@@ -22,14 +23,23 @@ class LoginUsernameTextfield extends StatelessWidget {
           contentPadding:
               const EdgeInsets.symmetric(vertical: 26, horizontal: 12),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey.shade600),
+            borderSide: BorderSide(
+              color: AppColors.textColor.withAlpha(
+                100,
+              ),
+            ),
           ),
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.textColor),
           ),
-          fillColor: Colors.grey.shade800,
+          fillColor: AppColors.secondaryColor,
           filled: true,
           hintText: hintText,
+          hintStyle: TextStyle(
+            color: AppColors.textColor.withAlpha(
+              100,
+            ),
+          ),
         ),
       ),
     );

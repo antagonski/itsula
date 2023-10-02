@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:itsula/views/components/animations/empty_box_animation_view.dart';
+import 'package:itsula/views/blog/components/custom_blogary_fab.dart';
 
 class DummyPage extends StatelessWidget {
   const DummyPage({super.key});
@@ -9,9 +9,12 @@ class DummyPage extends StatelessWidget {
     return const Scaffold(
       body: SafeArea(
         child: Center(
-          child: EmptyBoxAnimationView(),
+          child: Text(
+            "ddd",
+          ),
         ),
       ),
+      floatingActionButton: CustomBlogaryFabView(),
     );
   }
 }

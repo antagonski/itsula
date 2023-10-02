@@ -2,9 +2,14 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:itsula/state/auth/providers/auth_state_provider.dart';
 import 'package:itsula/state/constants/homepage_side_bar_app_name.dart';
 import 'package:itsula/state/homepage/providers/homepage_state_provider.dart';
+import 'package:itsula/views/components/dialogs/alert_dialog_model.dart';
+import 'package:itsula/views/components/dialogs/logout_dialog.dart';
+import 'package:itsula/views/constants/app_colors.dart';
 import 'package:itsula/views/constants/strings.dart';
+import 'package:itsula/views/homepage/application_list_view.dart';
 import 'package:itsula/views/homepage/components/side_menu_tile.dart';
 
 class HomePageView extends ConsumerStatefulWidget {
@@ -61,7 +66,9 @@ class _HomePageState extends ConsumerState<HomePageView>
   Widget build(BuildContext context) {
     //final controller = ref.watch(homePageStateProvider);
     return Scaffold(
-      backgroundColor: Colors.amber,
+      backgroundColor: AppColors.backgroundColor.withAlpha(
+        150,
+      ),
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
@@ -77,7 +84,7 @@ class _HomePageState extends ConsumerState<HomePageView>
               body: Container(
                 width: 270,
                 height: double.infinity,
-                color: Colors.pink.shade300,
+                color: AppColors.secondaryColor,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -97,12 +104,6 @@ class _HomePageState extends ConsumerState<HomePageView>
                                 ),
                               ),
                             ],
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Divider(
-                              color: Colors.white,
-                            ),
                           ),
                           SideMenutile(
                             title: HomePageSideBarAppName.blogary,
@@ -176,12 +177,44 @@ class _HomePageState extends ConsumerState<HomePageView>
                     Container(
                       alignment: Alignment.bottomCenter,
                       padding: const EdgeInsets.only(bottom: 24),
-                      child: OutlinedButton(
-                        onPressed: () {},
-                        child: const Text(
-                          Strings.logout,
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.normal),
+                      child: FilledButton(
+                        style: FilledButton.styleFrom(
+                          shadowColor: Colors.black,
+                          elevation: 15,
+                          backgroundColor: AppColors.primaryColor,
+                        ),
+                        onPressed: () async {
+                          final result = await const LogoutDialog()
+                              .present(context)
+                              .then((value) => value ?? false);
+
+                          if (result) {
+                            await ref.read(authStateProvider.notifier).logOut();
+                            ref.read(homePageStateProvider.notifier).reset();
+                          }
+                        },
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 2.0,
+                                right: 4.0,
+                              ),
+                              child: Icon(
+                                Icons.logout,
+                                color: AppColors.textColor,
+                              ),
+                            ),
+                            Text(
+                              Strings.logout,
+                              style: TextStyle(
+                                  color: AppColors.textColor,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.normal),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -211,18 +244,10 @@ class _HomePageState extends ConsumerState<HomePageView>
                         (Widget child, Animation<double> animation) {
                       return FadeTransition(opacity: animation, child: child);
                     },
-                    child: Center(
-                      child: Container(
-                        width: 500,
-                        height: 1000,
-                        decoration: const BoxDecoration(
-                          color: Colors.blue,
-                        ),
-                        child: Center(
-                          child: Text(
-                              'Current index is: ${ref.read(homePageStateProvider.notifier).geCurrentIndex()}.'),
-                        ),
-                      ),
+                    child: applicationListView(
+                      index: ref
+                          .read(homePageStateProvider.notifier)
+                          .geCurrentIndex(),
                     ),
                   ),
                 ),
@@ -235,7 +260,6 @@ class _HomePageState extends ConsumerState<HomePageView>
             left: ref.read(homePageStateProvider.notifier).getIsSideMenuHidden()
                 ? 0
                 : 200,
-            top: 2,
             child: SafeArea(
               child: GestureDetector(
                 onTap: () {
@@ -253,12 +277,13 @@ class _HomePageState extends ConsumerState<HomePageView>
                       .onSideMenuOpenOrHiddenChange();
                 },
                 child: Container(
-                  margin: const EdgeInsets.only(top: 16, left: 8),
+                  margin: const EdgeInsets.only(top: 2, left: 8),
                   height: 45,
                   width: 45,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryColor,
                     shape: BoxShape.circle,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(offset: Offset(0, 3), blurRadius: 8),
                     ],
                   ),

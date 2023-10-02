@@ -18,7 +18,7 @@ class GoogleSquareButton extends StatelessWidget {
       child: FaIcon(
         FontAwesomeIcons.google,
         size: 50.0,
-        color: AppColors.googleColor,
+        color: AppColors.primaryColor,
       ),
     );
   }

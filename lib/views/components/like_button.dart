@@ -6,6 +6,7 @@ import 'package:itsula/state/likes/models/like_dislike_request.dart';
 import 'package:itsula/state/likes/providers/has_liked_post_provider.dart';
 import 'package:itsula/state/likes/providers/like_dislike_post_provider.dart';
 import 'package:itsula/state/posts/typedefs/post_id.dart';
+import 'package:itsula/views/constants/app_colors.dart';
 
 class LikeButton extends ConsumerWidget {
   final PostId postId;
@@ -21,6 +22,7 @@ class LikeButton extends ConsumerWidget {
     return hasLiked.when(
       data: (isLiked) {
         return IconButton(
+          color: AppColors.textColor,
           icon: FaIcon(
             isLiked
                 ? FontAwesomeIcons.solidThumbsUp

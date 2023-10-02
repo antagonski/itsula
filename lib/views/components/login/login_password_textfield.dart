@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:itsula/state/auth/providers/is_password_showing_provider.dart';
+import 'package:itsula/views/constants/app_colors.dart';
 
 class LoginPasswordTextfield extends ConsumerWidget {
   final String hintText;
@@ -34,14 +35,23 @@ class LoginPasswordTextfield extends ConsumerWidget {
                   },
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey.shade600),
+                  borderSide: BorderSide(
+                    color: AppColors.textColor.withAlpha(
+                      100,
+                    ),
+                  ),
                 ),
-                focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.textColor),
                 ),
-                fillColor: Colors.grey.shade800,
+                fillColor: AppColors.secondaryColor,
                 filled: true,
                 hintText: hintText,
+                hintStyle: TextStyle(
+                  color: AppColors.textColor.withAlpha(
+                    100,
+                  ),
+                ),
               ),
             );
           },

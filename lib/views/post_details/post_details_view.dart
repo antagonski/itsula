@@ -14,8 +14,9 @@ import 'package:itsula/views/components/dialogs/delete_dialog.dart';
 import 'package:itsula/views/components/like_button.dart';
 import 'package:itsula/views/components/likes_count_view.dart';
 import 'package:itsula/views/components/post/post_date_view.dart';
-import 'package:itsula/views/components/post/post_display_name_and_message_view.dart';
+import 'package:itsula/views/components/post/post_display_name_message_and_date_view.dart';
 import 'package:itsula/views/components/post/post_image_or_video_view.dart';
+import 'package:itsula/views/constants/app_colors.dart';
 import 'package:itsula/views/constants/strings.dart';
 import 'package:itsula/views/post_comments/post_comments_view.dart';
 import 'package:share_plus/share_plus.dart';
@@ -53,7 +54,10 @@ class _PostDetailsViewState extends ConsumerState<PostDetailsView> {
       ),
     );
     return Scaffold(
+      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
+        backgroundColor: AppColors.secondaryColor,
+        centerTitle: true,
         title: const Text(
           Strings.postDetails,
         ),
@@ -61,6 +65,7 @@ class _PostDetailsViewState extends ConsumerState<PostDetailsView> {
           postWithComments.when(
             data: (thisPostWithComments) {
               return IconButton(
+                color: AppColors.textColor,
                 onPressed: () {
                   final url = thisPostWithComments.post.fileUrl;
                   Share.share(url, subject: Strings.checkTHISout);
@@ -85,6 +90,7 @@ class _PostDetailsViewState extends ConsumerState<PostDetailsView> {
           ),
           if (isThisOurPost.value ?? false)
             IconButton(
+              color: AppColors.textColor,
               onPressed: () async {
                 final shouldDeletePost = await const DeleteDialog(
                   titleOfObjectToDelete: Strings.post,
@@ -118,56 +124,75 @@ class _PostDetailsViewState extends ConsumerState<PostDetailsView> {
               ),
               //TODO MAKE IT THE LAYOUT WE WANT KEK
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  if (thisPostWithComments.post.allowLikes)
-                    LikeButton(
-                      postId: postId,
-                    ),
-                  if (thisPostWithComments.post.allowComments)
-                    IconButton(
-                      onPressed: () {
-                        Navigator.of(context).push((MaterialPageRoute(
-                          builder: (context) {
-                            return PostCommentsView(
-                              postId: thisPostWithComments.post.postId,
-                            );
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      if (thisPostWithComments.post.allowLikes)
+                        LikeButton(
+                          postId: postId,
+                        ),
+                      if (thisPostWithComments.post.allowComments)
+                        IconButton(
+                          color: AppColors.textColor,
+                          onPressed: () {
+                            Navigator.of(context).push((MaterialPageRoute(
+                              builder: (context) {
+                                return PostCommentsView(
+                                  postId: thisPostWithComments.post.postId,
+                                );
+                              },
+                            )));
                           },
-                        )));
-                      },
-                      icon: const Icon(
-                        Icons.comment,
+                          icon: const Icon(
+                            Icons.comment,
+                          ),
+                        ),
+                    ],
+                  ),
+                  if (thisPostWithComments.post.allowLikes)
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 8.0,
+                        right: 16.0,
+                        bottom: 2.0,
+                      ),
+                      child: Row(
+                        children: [
+                          LikeCountView(
+                            postId: postId,
+                          ),
+                        ],
                       ),
                     ),
                 ],
               ),
-              //here comes the rest
-              PostDisplayNameAndMessageView(
-                post: thisPostWithComments.post,
-              ),
-              PostDateView(
-                dateTime: thisPostWithComments.post.createdAt,
-              ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                ),
                 child: Divider(
-                  color: Colors.white70,
+                  color: AppColors.accentColor,
+                  height: 1,
                 ),
               ),
+              //here comes the rest
+              PostDisplayNameMessageAndDateView(
+                post: thisPostWithComments.post,
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
+                child: Divider(
+                  color: AppColors.accentColor,
+                ),
+              ),
+
               CompactCommentColumn(
                 comments: thisPostWithComments.comments,
               ),
-              if (thisPostWithComments.post.allowLikes)
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      LikeCountView(
-                        postId: postId,
-                      ),
-                    ],
-                  ),
-                ),
+
               const SizedBox(
                 height: 100.0,
               ),
