@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:itsula/state/posts/providers/posts_by_search_term_provider.dart';
+import 'package:itsula/state/blogary/blogs/providers/blogs_by_search_term_provider.dart';
 import 'package:itsula/views/components/animations/empty_contents_with_text_animation_view.dart';
 import 'package:itsula/views/components/animations/fof_animation_view.dart';
 import 'package:itsula/views/components/animations/shrug_donger_animation_view.dart';
-import 'package:itsula/views/components/post/post_sliver_grid_view.dart';
+import 'package:itsula/views/components/blog/blog_sliver_grid_view.dart';
 import 'package:itsula/views/constants/strings.dart';
 
 class SearchGridView extends ConsumerWidget {
@@ -19,20 +19,20 @@ class SearchGridView extends ConsumerWidget {
             text: Strings.enterYourSearchTerm),
       );
     }
-    final posts = ref.watch(
-      postsBySearchTermProvider(searchTerm),
+    final blogs = ref.watch(
+      blogsBySearchTermProvider(searchTerm),
     );
-    return posts.when(
-      data: (posts) {
-        if (posts.isEmpty) {
+    return blogs.when(
+      data: (theseBlogs) {
+        if (theseBlogs.isEmpty) {
           return const SliverToBoxAdapter(
             child: Center(
               child: ShrugDongerAnimationView(),
             ),
           );
         }
-        return PostSliverGridView(
-          posts: posts,
+        return BlogSliverGridView(
+          blogs: theseBlogs,
         );
       },
       error: (error, stackTrace) {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:itsula/state/auth/providers/user_id_provider.dart';
-import 'package:itsula/state/comments/models/comment.dart';
-import 'package:itsula/state/comments/providers/delete_comment_provider.dart';
+import 'package:itsula/state/blogary/comments/models/comment.dart';
+import 'package:itsula/state/blogary/comments/providers/delete_comment_provider.dart';
 import 'package:itsula/state/user_info/providers/user_info_model_provider.dart';
 import 'package:itsula/views/components/animations/fof_animation_view.dart';
 import 'package:itsula/views/components/dialogs/alert_dialog_model.dart';

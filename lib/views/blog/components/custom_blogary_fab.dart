@@ -7,9 +7,10 @@ import 'package:itsula/state/blogary/providers/blogary_fab_provider.dart';
 import 'package:itsula/state/image_upload/constants/constants.dart';
 import 'package:itsula/state/image_upload/helpers/image_picker_helper.dart';
 import 'package:itsula/state/image_upload/models/file_type.dart';
-import 'package:itsula/state/post_settings/providers/post_settings_provider.dart';
+import 'package:itsula/state/blog_settings/providers/blog_settings_provider.dart';
 import 'package:itsula/views/constants/app_colors.dart';
-import 'package:itsula/views/create_new_post/create_new_post_view.dart';
+import 'package:itsula/views/constants/strings.dart';
+import 'package:itsula/views/create_new_blog/create_new_blog_view.dart';
 
 class CustomBlogaryFabView extends ConsumerStatefulWidget {
   const CustomBlogaryFabView({
@@ -74,25 +75,25 @@ class CustomBlogaryFabViewState extends ConsumerState<CustomBlogaryFabView>
     ref.read(blogaryFabProvider.notifier).changeHideShowStatus();
   }
 
-  Widget blogaryPostWithoutImageOrVideo() {
+  Widget blogaryBlogWithoutImageOrVideo() {
     return SizedBox(
       child: FloatingActionButton(
         backgroundColor: AppColors.accentColor,
         foregroundColor: AppColors.textColor,
         heroTag: 'bpwiov',
-        tooltip: 'Add just a blogary post, no image or video needed.',
+        tooltip: Strings.addJustABlog,
         onPressed: () async {
           animate();
-          //TODO implement a post without an image.
+          //TODO implement a blog without an image.
           final f = File(Constants.defaultImageRelativePath);
-          ref.refresh(postSettingProvider);
+          ref.refresh(blogSettingProvider);
           if (!mounted) {
             return;
           }
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (_) =>
-                  CreateNewPostView(file: f, fileType: FileType.image),
+                  CreateNewBlogView(file: f, fileType: FileType.image),
             ),
           );
         },
@@ -103,27 +104,27 @@ class CustomBlogaryFabViewState extends ConsumerState<CustomBlogaryFabView>
     );
   }
 
-  Widget blogaryPostWithImage() {
+  Widget blogaryBlogWithImage() {
     return SizedBox(
       child: FloatingActionButton(
         backgroundColor: AppColors.accentColor,
         foregroundColor: AppColors.textColor,
         heroTag: 'bpwi',
-        tooltip: 'Add a blogary post with an image.',
+        tooltip: Strings.addABlogWithAnImage,
         onPressed: () async {
           animate();
           final imageFile = await ImagePickerHelper.pickImageFromGallery();
           if (imageFile == null) {
             return;
           }
-          ref.refresh(postSettingProvider);
+          ref.refresh(blogSettingProvider);
           if (!mounted) {
             return;
           }
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (_) =>
-                  CreateNewPostView(file: imageFile, fileType: FileType.image),
+                  CreateNewBlogView(file: imageFile, fileType: FileType.image),
             ),
           );
         },
@@ -134,27 +135,27 @@ class CustomBlogaryFabViewState extends ConsumerState<CustomBlogaryFabView>
     );
   }
 
-  Widget blogaryPostWithVideo() {
+  Widget blogaryBlogWithVideo() {
     return SizedBox(
       child: FloatingActionButton(
         backgroundColor: AppColors.accentColor,
         foregroundColor: AppColors.textColor,
         heroTag: 'bpwv',
-        tooltip: 'Add a blogary post with a video.',
+        tooltip: Strings.addABlogWithAVideo,
         onPressed: () async {
           animate();
           final videoFile = await ImagePickerHelper.pickVideoFromGallery();
           if (videoFile == null) {
             return;
           }
-          ref.refresh(postSettingProvider);
+          ref.refresh(blogSettingProvider);
           if (!mounted) {
             return;
           }
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (_) =>
-                  CreateNewPostView(file: videoFile, fileType: FileType.video),
+                  CreateNewBlogView(file: videoFile, fileType: FileType.video),
             ),
           );
         },
@@ -173,7 +174,7 @@ class CustomBlogaryFabViewState extends ConsumerState<CustomBlogaryFabView>
         heroTag: 'toggle',
         backgroundColor: AppColors.primaryColor,
         foregroundColor: AppColors.textColor,
-        tooltip: 'Choose how you want to make a new post!',
+        tooltip: Strings.chooseHowYouWantToMakeANewBlog,
         onPressed: animate,
         child: AnimatedIcon(
             icon: AnimatedIcons.menu_close, progress: _animateIcon),
@@ -192,7 +193,7 @@ class CustomBlogaryFabViewState extends ConsumerState<CustomBlogaryFabView>
             _translateButtonAnimation.value * 3.0,
             0.0,
           ),
-          child: blogaryPostWithVideo(),
+          child: blogaryBlogWithVideo(),
         ),
         Transform(
           transform: Matrix4.translationValues(
@@ -200,7 +201,7 @@ class CustomBlogaryFabViewState extends ConsumerState<CustomBlogaryFabView>
             _translateButtonAnimation.value * 2.0,
             0.0,
           ),
-          child: blogaryPostWithImage(),
+          child: blogaryBlogWithImage(),
         ),
         Transform(
           transform: Matrix4.translationValues(
@@ -208,7 +209,7 @@ class CustomBlogaryFabViewState extends ConsumerState<CustomBlogaryFabView>
             _translateButtonAnimation.value,
             0.0,
           ),
-          child: blogaryPostWithoutImageOrVideo(),
+          child: blogaryBlogWithoutImageOrVideo(),
         ),
         toggle(),
       ],

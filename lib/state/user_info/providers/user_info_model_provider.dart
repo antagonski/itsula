@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:itsula/state/constants/firebase_collection_name.dart';
 import 'package:itsula/state/constants/firebase_field_name.dart';
-import 'package:itsula/state/posts/typedefs/user_id.dart';
+import 'package:itsula/state/blogary/blogs/typedefs/user_id.dart';
 import 'package:itsula/state/user_info/models/user_info_model.dart';
 
 final userInfoModelProvider = StreamProvider.family

@@ -12,9 +12,9 @@ import 'package:itsula/state/image_upload/extensions/get_collection_name_from_fi
 import 'package:itsula/state/image_upload/extensions/get_image_data_aspect_ratio.dart';
 import 'package:itsula/state/image_upload/models/file_type.dart';
 import 'package:itsula/state/image_upload/typedefs/is_loading.dart';
-import 'package:itsula/state/post_settings/models/post_setting.dart';
-import 'package:itsula/state/posts/models/post_payload.dart';
-import 'package:itsula/state/posts/typedefs/user_id.dart';
+import 'package:itsula/state/blog_settings/models/blog_setting.dart';
+import 'package:itsula/state/blogary/blogs/models/blog_payload.dart';
+import 'package:itsula/state/blogary/blogs/typedefs/user_id.dart';
 import 'package:uuid/uuid.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 
@@ -27,11 +27,10 @@ class ImageUploadNotifier extends StateNotifier<IsLoading> {
     required File file,
     required FileType fileType,
     required String message,
-    required Map<PostSetting, bool> postSettings,
+    required Map<BlogSetting, bool> blogSettings,
     required UserId userId,
   }) async {
     isLoading = true;
-
     late Uint8List thumbnailUint8List;
     switch (fileType) {
       case FileType.image:
@@ -47,10 +46,8 @@ class ImageUploadNotifier extends StateNotifier<IsLoading> {
           fileAsImage,
           width: Constants.imageThumbnailWidth,
         );
-        //Test if this is even needed
         final thumbnailData = img.encodeJpg(thumbnail);
         thumbnailUint8List = Uint8List.fromList(thumbnailData);
-
         break;
       case FileType.video:
         final thumb = await VideoThumbnail.thumbnailData(
@@ -66,39 +63,25 @@ class ImageUploadNotifier extends StateNotifier<IsLoading> {
         }
         break;
     }
-
-    //calculate aspect ratio
     final thumbnailAspectRatio = await thumbnailUint8List.getAspectRatio();
-
-    //calculate references
-
     final fileName = const Uuid().v4();
-
-    //create references to the thumbnail and the image itself
-
     final thumbnailRef = FirebaseStorage.instance
         .ref()
         .child(userId)
         .child(FirebaseCollectionName.thumbnails)
         .child(fileName);
-
     final originalFileRef = FirebaseStorage.instance
         .ref()
         .child(userId)
         .child(fileType.collectionName)
         .child(fileName);
-
     try {
-      //uploading thumbnail
       final thumbnailUploadTask =
           await thumbnailRef.putData(thumbnailUint8List);
       final thumbnailStorageId = thumbnailUploadTask.ref.name;
-      //upload original file
       final originalFileUploadTask = await originalFileRef.putFile(file);
       final originalFileStorageId = originalFileUploadTask.ref.name;
-
-      //upload post itself
-      final postPayload = PostPayload(
+      final blogPayload = BlogPayload(
         message: message,
         thumbnailUrl: await thumbnailRef.getDownloadURL(),
         fileUrl: await originalFileRef.getDownloadURL(),
@@ -108,12 +91,11 @@ class ImageUploadNotifier extends StateNotifier<IsLoading> {
         aspectRatio: thumbnailAspectRatio,
         thumbnailStorageId: thumbnailStorageId,
         originalFileStorageId: originalFileStorageId,
-        postSettings: postSettings,
+        blogSettings: blogSettings,
       );
-
       await FirebaseFirestore.instance
-          .collection(FirebaseCollectionName.posts)
-          .add(postPayload);
+          .collection(FirebaseCollectionName.blogs)
+          .add(blogPayload);
       return true;
     } catch (_) {
       return false;

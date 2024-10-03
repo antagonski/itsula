@@ -3,7 +3,7 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:itsula/state/auth/constants/constants.dart';
 import 'package:itsula/state/auth/models/auth_result.dart';
-import 'package:itsula/state/posts/typedefs/user_id.dart';
+import 'package:itsula/state/blogary/blogs/typedefs/user_id.dart';
 
 class Authenticator {
   const Authenticator();
@@ -18,6 +18,29 @@ class Authenticator {
     await FirebaseAuth.instance.signOut();
     await GoogleSignIn().signOut();
     await FacebookAuth.instance.logOut();
+  }
+
+  Future<AuthResult> loginWithGoogle() async {
+    final GoogleSignIn googleSignIn = GoogleSignIn(
+      scopes: [
+        Constants.emailScope,
+      ],
+    );
+    final signInAccount = await googleSignIn.signIn();
+    if (signInAccount == null) {
+      return AuthResult.aborted;
+    }
+    final googleAuth = await signInAccount.authentication;
+    final oauthCredential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+    try {
+      await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+      return AuthResult.success;
+    } catch (e) {
+      return AuthResult.failure;
+    }
   }
 
   Future<AuthResult> loginWithFacebook() async {
@@ -55,29 +78,6 @@ class Authenticator {
         return AuthResult.success;
       }
 
-      return AuthResult.failure;
-    }
-  }
-
-  Future<AuthResult> loginWithGoogle() async {
-    final GoogleSignIn googleSignIn = GoogleSignIn(
-      scopes: [
-        Constants.emailScope,
-      ],
-    );
-    final signInAccount = await googleSignIn.signIn();
-    if (signInAccount == null) {
-      return AuthResult.aborted;
-    }
-    final googleAuth = await signInAccount.authentication;
-    final oauthCredential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-    try {
-      await FirebaseAuth.instance.signInWithCredential(oauthCredential);
-      return AuthResult.success;
-    } catch (e) {
       return AuthResult.failure;
     }
   }

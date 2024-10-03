@@ -1,20 +1,12 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:itsula/state/constants/homepage_side_bar_app_name.dart';
-import 'package:itsula/state/image_upload/constants/constants.dart';
-import 'package:itsula/state/image_upload/helpers/image_picker_helper.dart';
-import 'package:itsula/state/image_upload/models/file_type.dart';
-import 'package:itsula/state/post_settings/providers/post_settings_provider.dart';
 import 'package:itsula/views/blog/components/custom_blogary_fab.dart';
-import 'package:itsula/views/components/random/dummy_page.dart';
 import 'package:itsula/views/constants/app_colors.dart';
-import 'package:itsula/views/create_new_post/create_new_post_view.dart';
-import 'package:itsula/views/tabs/all_posts/all_posts_view.dart';
+import 'package:itsula/views/tabs/all_blogs/all_blogs_view.dart';
 import 'package:itsula/views/tabs/search/search_view.dart';
-import 'package:itsula/views/tabs/user_posts/user_posts_view.dart';
+import 'package:itsula/views/tabs/user_blogs/user_blogs_view.dart';
 
 class BlogaryView extends ConsumerStatefulWidget {
   const BlogaryView({super.key});
@@ -70,9 +62,9 @@ class _BlogViewState extends ConsumerState<BlogaryView> {
         ),
         body: const TabBarView(
           children: [
-            UserPostsView(),
+            UserBlogsView(),
             SearchView(),
-            AllPostsView(),
+            AllBlogsView(),
           ],
         ),
         floatingActionButton: const CustomBlogaryFabView(),

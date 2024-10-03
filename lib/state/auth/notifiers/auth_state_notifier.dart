@@ -2,7 +2,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:itsula/state/auth/backend/authenticator.dart';
 import 'package:itsula/state/auth/models/auth_result.dart';
 import 'package:itsula/state/auth/models/auth_state.dart';
-import 'package:itsula/state/posts/typedefs/user_id.dart';
+import 'package:itsula/state/blogary/blogs/typedefs/user_id.dart';
 import 'package:itsula/state/user_info/backend/user_info_storage.dart';
 
 class AuthStateNotifier extends StateNotifier<AuthState> {

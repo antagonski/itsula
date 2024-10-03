@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart' show immutable, kDebugMode;
 import 'package:itsula/state/constants/firebase_collection_name.dart';
 import 'package:itsula/state/constants/firebase_field_name.dart';
-import 'package:itsula/state/posts/typedefs/user_id.dart';
+import 'package:itsula/state/blogary/blogs/typedefs/user_id.dart';
 import 'package:itsula/state/user_info/models/user_info_payload.dart';
 
 @immutable

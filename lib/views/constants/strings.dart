@@ -4,11 +4,11 @@ import 'package:flutter/foundation.dart' show immutable;
 class Strings {
   static const allowLikesTitle = 'Allow likes';
   static const allowLikesDescription =
-      'By allowing likes, you consent to users pressing the like button on your post.';
+      'By allowing likes, you consent to users pressing the like button on your blog.';
   static const allowLikesStorageKey = 'allow_likes';
   static const allowCommentsTitle = 'Allow comments';
   static const allowCommentsDescription =
-      'By allowing comments, you consent to users commenting on your post.';
+      'By allowing comments, you consent to users commenting on your blog.';
   static const allowCommentsStorageKey = 'allow_comments';
 
   static const comment = 'comment';
@@ -34,12 +34,12 @@ class Strings {
   static const appName = 'ItsulA';
   static const welcomeMessage = "Welcome to ${Strings.appName}";
 
-  static const youHaveNoBlogPostsYet = "You have not made a blog post yet.";
+  static const youHaveNoBlogsYet = "You have not made a blog yet.";
 
-  static const noBlogPostsAvailable = "Hmm, nobody has made a blog post yet.";
+  static const noBlogsAvailable = "Hmm, nobody has made a blog yet.";
 
   static const enterYourSearchTerm =
-      'Enter your search term in order find the blog post you want. The criteria can be anything from the description!';
+      'Enter your search term in order find the blog you want. The criteria can be anything from the description!';
 
   static const fb = "Facebook";
   static const facebookRegisterUrl = "https://www.facebook.com/signup";
@@ -50,10 +50,10 @@ class Strings {
   static const comments = 'Comments';
   static const writeYourCommentHere = 'Write your comment here: ';
   static const checkTHISout = 'Check THIS out!';
-  static const postDetails = 'Post Details';
-  static const post = 'post';
+  static const blogDetails = 'Blog Details';
+  static const blog = 'blog';
 
-  static const createNewBlogPost = 'Create New Blog Post';
+  static const createNewBlog = 'Create New Blog';
   static const pleaseWriteYourMessageHere = 'Please write your message here';
   static const noCommentsYet = 'No comments have been written yet, sadge.';
   static const enterYourSearchTermHere = 'Enter your search term here: ';
@@ -68,5 +68,12 @@ class Strings {
   static const orLogInWith = "Or log in with";
 
   static const anErrorHasOccurred = 'An error has occurred..';
+
+  static const addANewBlog = 'Add a new blog';
+  static const addJustABlog = 'Add just a blog, no image or video needed.';
+  static const addABlogWithAnImage = 'Add a blog with an image.';
+  static const addABlogWithAVideo = 'Add a blog with a video.';
+  static const chooseHowYouWantToMakeANewBlog =
+      'Choose how you want to make a new blog!';
   const Strings._();
 }

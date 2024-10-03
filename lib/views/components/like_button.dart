@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:itsula/state/auth/providers/user_id_provider.dart';
-import 'package:itsula/state/likes/models/like_dislike_request.dart';
-import 'package:itsula/state/likes/providers/has_liked_post_provider.dart';
-import 'package:itsula/state/likes/providers/like_dislike_post_provider.dart';
-import 'package:itsula/state/posts/typedefs/post_id.dart';
+import 'package:itsula/state/blogary/blogs/likes/models/like_dislike_request.dart';
+import 'package:itsula/state/blogary/blogs/likes/providers/has_liked_blog_provider.dart';
+import 'package:itsula/state/blogary/blogs/likes/providers/like_dislike_blog_provider.dart';
+import 'package:itsula/state/blogary/blogs/typedefs/blog_id.dart';
 import 'package:itsula/views/constants/app_colors.dart';
 
 class LikeButton extends ConsumerWidget {
-  final PostId postId;
-  const LikeButton({required this.postId, super.key});
+  final BlogId blogId;
+  const LikeButton({required this.blogId, super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final hasLiked = ref.watch(
-      hasLikedPostProvider(
-        postId,
+      hasLikedBlogProvider(
+        blogId,
       ),
     );
     return hasLiked.when(
@@ -34,11 +34,11 @@ class LikeButton extends ConsumerWidget {
               return;
             }
             final likedRequest = LikeDislikeRequest(
-              postId: postId,
+              blogId: blogId,
               likedBy: userId,
             );
             ref.read(
-              likeDislikePostProvider(
+              likeDislikeBlogProvider(
                 likedRequest,
               ),
             );

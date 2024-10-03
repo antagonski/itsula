@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:itsula/state/likes/providers/post_likes_count_provider.dart';
-import 'package:itsula/state/posts/typedefs/post_id.dart';
+import 'package:itsula/state/blogary/blogs/likes/providers/blog_likes_count_provider.dart';
+import 'package:itsula/state/blogary/blogs/typedefs/blog_id.dart';
 import 'package:itsula/views/constants/strings.dart';
 
 class LikeCountView extends ConsumerWidget {
-  final PostId postId;
-  const LikeCountView({required this.postId, super.key});
+  final BlogId blogId;
+  const LikeCountView({required this.blogId, super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final likesCount = ref.watch(
-      postLikesCountProvider(
-        postId,
+      blogLikesCountProvider(
+        blogId,
       ),
     );
     return likesCount.when(data: (int likesCount) {

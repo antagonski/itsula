@@ -90,6 +90,9 @@ class NewLoginView extends ConsumerWidget {
                   height: 50.0,
                 ),
                 const LoginViewRegisterLinks(),
+                const SizedBox(
+                  height: 50.0,
+                ),
               ],
             ),
           ),

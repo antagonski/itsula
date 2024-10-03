@@ -230,12 +230,9 @@ class _HomePageState extends ConsumerState<HomePageView>
               ..setEntry(3, 2, 0.001)
               ..rotateY(animation.value - 30 * animation.value * pi / 180),
             child: Transform.translate(
-              /* offset: Offset(
-                  _controller.isSideMenuHiddenRightNow() ? 0.w : 270.w, 0.h),*/
               offset: Offset(animation.value * 264, 0),
               child: Transform.scale(
-                scale: scalAnimation
-                    .value /*_controller.isSideMenuHiddenRightNow() ? 1 : 0.8*/,
+                scale: scalAnimation.value,
                 child: ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(24)),
                   child: AnimatedSwitcher(
@@ -267,10 +264,8 @@ class _HomePageState extends ConsumerState<HomePageView>
                       .read(homePageStateProvider.notifier)
                       .getIsSideMenuHidden()) {
                     _aniController.forward();
-                    //toastInfo("Animation value: ${animation.value}");
                   } else {
                     _aniController.reverse();
-                    //toastInfo("Animation value: ${animation.value}");
                   }
                   ref
                       .read(homePageStateProvider.notifier)

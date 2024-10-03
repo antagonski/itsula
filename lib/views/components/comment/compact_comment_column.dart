@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:itsula/state/comments/models/comment.dart';
+import 'package:itsula/state/blogary/comments/models/comment.dart';
 import 'package:itsula/views/components/comment/compact_comment_tile.dart';
 
 class CompactCommentColumn extends StatelessWidget {

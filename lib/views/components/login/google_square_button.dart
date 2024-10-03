@@ -8,13 +8,6 @@ class GoogleSquareButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      /*padding: const EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.white,
-          ),
-          borderRadius: BorderRadius.circular(16.0),
-          color: AppColors.loginButtonColor),*/
       child: FaIcon(
         FontAwesomeIcons.google,
         size: 50.0,
